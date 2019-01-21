@@ -1,4 +1,4 @@
-package com.ilya.mihailenko.eventreminder.presentation.base
+package com.ilya.mihailenko.eventreminder.presentation.ui.mvp
 
 import com.arellomobile.mvp.MvpAppCompatFragment
 
