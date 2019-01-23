@@ -1,4 +1,4 @@
-package com.ilya.mihailenko.eventreminder.presentation.ui.mvp
+package com.ilya.mihailenko.eventreminder.presentation.mvp
 
 import android.databinding.ViewDataBinding
 import android.os.Bundle

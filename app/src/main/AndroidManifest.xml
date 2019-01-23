@@ -10,7 +10,7 @@
         android:name=".ReminderApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.ui.main.MainActivity">
+        <activity android:name="com.ilya.mihailenko.eventreminder.presentation.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

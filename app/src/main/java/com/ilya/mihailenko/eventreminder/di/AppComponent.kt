@@ -6,9 +6,11 @@ import com.ilya.mihailenko.eventreminder.ReminderApp
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 
+@Singleton
 @Component(
-    modules = [AndroidSupportInjectionModule::class, AppModule::class, ActivityBuilder::class]
+    modules = [AndroidSupportInjectionModule::class, AppModule::class, NavigationModule::class, ActivityBuilder::class]
 )
 interface AppComponent : AndroidInjector<ReminderApp> {
     @Component.Builder

@@ -3,7 +3,7 @@ package com.ilya.mihailenko.eventreminder.di
 import com.ilya.mihailenko.eventreminder.di.scopes.PerActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import com.ilya.mihailenko.eventreminder.presentation.ui.main.MainActivity
+import com.ilya.mihailenko.eventreminder.presentation.main.MainActivity
 
 
 @Module

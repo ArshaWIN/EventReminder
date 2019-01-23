@@ -1,17 +1,16 @@
-package com.ilya.mihailenko.eventreminder.presentation.ui.main
+package com.ilya.mihailenko.eventreminder.presentation.main
 
 import android.databinding.DataBindingUtil
-import android.databinding.DataBindingUtil.setContentView
 import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.ilya.mihailenko.eventreminder.R
 import com.ilya.mihailenko.eventreminder.databinding.ActivityMainBinding
-import com.ilya.mihailenko.eventreminder.presentation.ui.mvp.BaseActivity
+import com.ilya.mihailenko.eventreminder.presentation.mvp.BaseActivity
+import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>(), MainView {
-
 
     @Inject
     @InjectPresenter
@@ -19,6 +18,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainView {
 
     @ProvidePresenter
     fun providePresenter() = presenter
+
+    @Inject
+    lateinit var navigatorHolder: NavigatorHolder
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
