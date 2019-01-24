@@ -10,7 +10,7 @@ import com.ilya.mihailenko.eventreminder.presentation.main.MainActivity
 internal abstract class ActivityBuilder {
 
     @PerActivity
-    @ContributesAndroidInjector(modules = [MainActivityModule::class])
+    @ContributesAndroidInjector(modules = [MainActivityModule::class, FragmentProvider::class])
     abstract fun bindMainActivity(): MainActivity
 
 }

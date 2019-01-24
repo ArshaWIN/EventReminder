@@ -6,6 +6,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.ilya.mihailenko.eventreminder.R
 import com.ilya.mihailenko.eventreminder.databinding.ActivityMainBinding
+import com.ilya.mihailenko.eventreminder.navigation.MainActivityNavigator
 import com.ilya.mihailenko.eventreminder.presentation.mvp.BaseActivity
 import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
@@ -17,15 +18,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainView {
     lateinit var presenter: MainPresenter
 
     @ProvidePresenter
-    fun providePresenter() = presenter
+    fun providePresenter(): MainPresenter = presenter
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
+    @Inject
+    lateinit var navigator: MainActivityNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.test.text = "test"
+        presenter.go()
+    }
+
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
     }
 
     override fun inflateBinding(): ActivityMainBinding =
