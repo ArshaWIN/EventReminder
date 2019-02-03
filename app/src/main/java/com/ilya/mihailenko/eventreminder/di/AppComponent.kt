@@ -2,6 +2,7 @@ package com.ilya.mihailenko.eventreminder.di
 
 
 import com.ilya.mihailenko.eventreminder.ReminderApp
+import com.ilya.mihailenko.eventreminder.di.module.DatabaseModule
 
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -10,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [AndroidSupportInjectionModule::class, AppModule::class, NavigationModule::class, ActivityBuilder::class]
+    modules = [AndroidSupportInjectionModule::class, AppModule::class, NavigationModule::class, ActivityBuilder::class, DatabaseModule::class]
 )
 interface AppComponent : AndroidInjector<ReminderApp> {
     @Component.Builder
