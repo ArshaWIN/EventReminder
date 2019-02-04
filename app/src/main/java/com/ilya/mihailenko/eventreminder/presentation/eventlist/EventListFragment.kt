@@ -19,14 +19,18 @@ class EventListFragment : BaseFragment<FragmentEventListBinding>(), EventListVie
     @ProvidePresenter
     fun providePresenter(): EventListPresenter = presenter
 
+    override val layoutRes: Int = R.layout.fragment_event_list
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.tvText.text = "TestTestKNF klfwme qdwm"
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_event_list
+    override fun onBackPressed() {
+        presenter.onBackPressed()
+    }
 
     companion object {
-        fun newInstanse(): EventListFragment = EventListFragment()
+        fun newInstance(): EventListFragment = EventListFragment()
     }
 }

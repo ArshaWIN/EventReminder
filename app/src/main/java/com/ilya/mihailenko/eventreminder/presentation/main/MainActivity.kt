@@ -1,6 +1,7 @@
 package com.ilya.mihailenko.eventreminder.presentation.main
 
 import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -8,6 +9,7 @@ import com.ilya.mihailenko.eventreminder.R
 import com.ilya.mihailenko.eventreminder.databinding.ActivityMainBinding
 import com.ilya.mihailenko.eventreminder.navigation.MainActivityNavigator
 import com.ilya.mihailenko.eventreminder.presentation.mvp.BaseActivity
+import com.ilya.mihailenko.eventreminder.presentation.mvp.BaseFragment
 import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
@@ -26,9 +28,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainView {
     @Inject
     lateinit var navigator: MainActivityNavigator
 
+    private val currentFragment: BaseFragment<*>?
+        get() = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as? BaseFragment<*>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter.go()
+
+        if (savedInstanceState == null) {
+            presenter.go()
+        }
     }
 
     override fun onResumeFragments() {
@@ -43,4 +51,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), MainView {
 
     override fun inflateBinding(): ActivityMainBinding =
         DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+    override fun onBackPressed() {
+        currentFragment?.onBackPressed() ?: super.onBackPressed()
+    }
 }

@@ -1,4 +1,4 @@
-package com.ilya.mihailenko.eventreminder.presentation.eventlist
+package com.ilya.mihailenko.eventreminder.presentation.addevent
 
 import com.arellomobile.mvp.InjectViewState
 import com.ilya.mihailenko.eventreminder.navigation.ExtendedRouter
@@ -6,9 +6,9 @@ import com.ilya.mihailenko.eventreminder.presentation.mvp.BasePresenter
 import javax.inject.Inject
 
 @InjectViewState
-class EventListPresenter @Inject constructor(
+class AddEventPresenter @Inject constructor(
     val router: ExtendedRouter
-) : BasePresenter<EventListView>() {
+) : BasePresenter<AddEventView>() {
 
     fun onBackPressed() {
         router.exit()

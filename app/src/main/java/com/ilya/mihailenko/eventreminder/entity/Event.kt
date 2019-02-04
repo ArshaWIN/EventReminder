@@ -9,10 +9,10 @@ data class Event(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     val name: String,
-    val description: String,
-    val createdAt: Date
+    val description: String
+//    val createdAt: Date
 ) {
     companion object {
-        const val TABLE_NAME = "table"
+        const val TABLE_NAME = "reminder"
     }
 }

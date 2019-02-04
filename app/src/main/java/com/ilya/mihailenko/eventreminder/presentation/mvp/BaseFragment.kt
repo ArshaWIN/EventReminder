@@ -14,6 +14,7 @@ import dagger.android.support.AndroidSupportInjection
 abstract class BaseFragment<TBinding : ViewDataBinding> : MvpAppCompatFragment() {
 
     protected lateinit var binding: TBinding
+    abstract val layoutRes: Int
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +22,7 @@ abstract class BaseFragment<TBinding : ViewDataBinding> : MvpAppCompatFragment()
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+        binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
         return binding.root
     }
 
@@ -30,5 +31,5 @@ abstract class BaseFragment<TBinding : ViewDataBinding> : MvpAppCompatFragment()
         super.onAttach(context)
     }
 
-    protected abstract fun getLayoutId(): Int
+    open fun onBackPressed() {}
 }

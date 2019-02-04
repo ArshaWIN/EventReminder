@@ -6,7 +6,7 @@ import com.ilya.mihailenko.eventreminder.entity.Event
 import io.reactivex.Flowable
 
 @Dao
-interface EventDao : BaseDao<EventDao> {
+interface EventDao : BaseDao<Event> {
 
     @Query("SELECT * FROM ${Event.TABLE_NAME}")
     abstract fun getData(): Flowable<List<Event>>

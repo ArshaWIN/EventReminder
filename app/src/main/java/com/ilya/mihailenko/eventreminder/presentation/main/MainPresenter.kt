@@ -12,7 +12,7 @@ class MainPresenter @Inject constructor(
 ) : BasePresenter<MainView>() {
 
     fun go() {
-        router.navigateTo(Screens.EventList)
+        router.newRootChain(Screens.EventList)
     }
 
 }
