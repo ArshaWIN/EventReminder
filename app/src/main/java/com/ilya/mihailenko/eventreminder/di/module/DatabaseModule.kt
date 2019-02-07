@@ -2,6 +2,7 @@ package com.ilya.mihailenko.eventreminder.di.module
 
 import android.arch.persistence.room.Room
 import com.ilya.mihailenko.eventreminder.ReminderApp
+import com.ilya.mihailenko.eventreminder.model.data.database.EventDao
 import com.ilya.mihailenko.eventreminder.model.data.database.EventReminderDatabase
 import dagger.Module
 import dagger.Provides
@@ -19,7 +20,13 @@ class DatabaseModule {
                 EventReminderDatabase::class.java,
                 EventReminderDatabase.DB_NAME
             )
+//TODO temp
             .fallbackToDestructiveMigration()
             .build()
+    }
+
+    @Provides
+    fun provideEventDao(database: EventReminderDatabase): EventDao {
+        return database.eventDao()
     }
 }

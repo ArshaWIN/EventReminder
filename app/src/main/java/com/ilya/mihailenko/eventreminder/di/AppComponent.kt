@@ -11,7 +11,11 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [AndroidSupportInjectionModule::class, AppModule::class, NavigationModule::class, ActivityBuilder::class, DatabaseModule::class]
+    modules = [AndroidSupportInjectionModule::class,
+        AppModule::class,
+        NavigationModule::class,
+        ActivityBuilder::class,
+        DatabaseModule::class]
 )
 interface AppComponent : AndroidInjector<ReminderApp> {
     @Component.Builder

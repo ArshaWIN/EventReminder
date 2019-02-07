@@ -1,5 +1,7 @@
 package com.ilya.mihailenko.eventreminder.presentation.addevent
 
+import android.os.Bundle
+import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.ilya.mihailenko.eventreminder.R
@@ -18,6 +20,16 @@ class AddEventFragment : BaseFragment<FragmentAddEventBinding>(), AddEventView {
     fun providePresenter(): AddEventPresenter = presenter
 
     override val layoutRes: Int = R.layout.fragment_add_event
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.bSave.setOnClickListener {
+            presenter.onSaveClick(
+                binding.etName.text.toString(),
+                binding.etDescription.text.toString()
+            )
+        }
+    }
 
     override fun onBackPressed() {
         presenter.onBackPressed()

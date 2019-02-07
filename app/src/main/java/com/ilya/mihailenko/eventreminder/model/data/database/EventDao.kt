@@ -9,5 +9,5 @@ import io.reactivex.Flowable
 interface EventDao : BaseDao<Event> {
 
     @Query("SELECT * FROM ${Event.TABLE_NAME}")
-    abstract fun getData(): Flowable<List<Event>>
+    fun getData(): Flowable<List<Event>>
 }

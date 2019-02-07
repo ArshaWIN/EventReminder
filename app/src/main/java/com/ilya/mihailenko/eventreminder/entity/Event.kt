@@ -2,15 +2,17 @@ package com.ilya.mihailenko.eventreminder.entity
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import java.sql.Date
+import java.util.*
 
 @Entity(tableName = Event.TABLE_NAME)
 data class Event(
+
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     val name: String,
-    val description: String
-//    val createdAt: Date
+    val description: String,
+//    val reminderDate: Date,
+    val createdAt: Date
 ) {
     companion object {
         const val TABLE_NAME = "reminder"
