@@ -7,7 +7,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.ilya.mihailenko.eventreminder.R
 import com.ilya.mihailenko.eventreminder.databinding.FragmentEventListBinding
-import com.ilya.mihailenko.eventreminder.entity.Event
 import com.ilya.mihailenko.eventreminder.presentation.eventlist.adapter.EventListAdapter
 import com.ilya.mihailenko.eventreminder.presentation.eventlist.adapter.EventViewItem
 import com.ilya.mihailenko.eventreminder.presentation.mvp.BaseFragment
@@ -25,14 +24,26 @@ class EventListFragment : BaseFragment<FragmentEventListBinding>(), EventListVie
 
     override val layoutRes: Int = R.layout.fragment_event_list
 
+    val adapter: EventListAdapter by lazy {
+        EventListAdapter()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.fab.setOnClickListener { presenter.onFabClick() }
-        val adapter = EventListAdapter()
-        binding.rvEvents.layoutManager = LinearLayoutManager(context)
-        binding.rvEvents.adapter = adapter
+        initEventList()
+    }
 
+    private fun initEventList() {
+        with(binding.rvEvents) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = this@EventListFragment.adapter
+        }
+    }
+
+    override fun showEvents(events: MutableList<EventViewItem>) {
+        adapter.setMyItems(events)
     }
 
     override fun onBackPressed() {

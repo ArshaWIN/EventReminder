@@ -14,21 +14,11 @@ import java.util.ArrayList
 open class DataBindingAdapter<B : ViewDataBinding, V : ViewItem<B>> :
     RecyclerView.Adapter<DataBindingViewHolder<B>>() {
 
-    var items: MutableList<V> = ArrayList()
+    open var items: MutableList<V> = ArrayList()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
-
-    fun addItems(items: List<V>) {
-        val startIndex = this.items.size
-        this.items.addAll(items)
-        if (startIndex == 0) {
-            notifyDataSetChanged()
-        } else {
-            notifyItemRangeInserted(startIndex, items.size)
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingViewHolder<B> {
         val inflater = LayoutInflater.from(parent.context)

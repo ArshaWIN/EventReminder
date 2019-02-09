@@ -1,8 +1,9 @@
 package com.ilya.mihailenko.eventreminder.presentation.eventlist.adapter
 
 import com.ilya.mihailenko.eventreminder.databinding.ItemEventBinding
-import com.ilya.mihailenko.eventreminder.ui.adapter.DataBindingAdapter
+import com.ilya.mihailenko.eventreminder.ui.adapter.DataBindingAdapterDiff
 
 
-class EventListAdapter : DataBindingAdapter<ItemEventBinding, EventViewItem>() {
+class EventListAdapter() : DataBindingAdapterDiff<ItemEventBinding, EventViewItem>() {
+
 }

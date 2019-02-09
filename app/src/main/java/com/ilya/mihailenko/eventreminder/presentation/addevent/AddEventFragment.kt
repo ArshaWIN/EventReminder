@@ -7,6 +7,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.ilya.mihailenko.eventreminder.R
 import com.ilya.mihailenko.eventreminder.databinding.FragmentAddEventBinding
 import com.ilya.mihailenko.eventreminder.presentation.mvp.BaseFragment
+import com.ilya.mihailenko.eventreminder.utils.ext.hideKeyboard
 import javax.inject.Inject
 
 
@@ -29,6 +30,10 @@ class AddEventFragment : BaseFragment<FragmentAddEventBinding>(), AddEventView {
                 binding.etDescription.text.toString()
             )
         }
+    }
+
+    override fun hideKeyboard() {
+        activity?.hideKeyboard()
     }
 
     override fun onBackPressed() {

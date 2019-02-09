@@ -33,7 +33,10 @@ class AddEventPresenter @Inject constructor(
         addEventInteractor.addEvent(event)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ router.exit() }, { Timber.e(it) })
+            .subscribe({
+                viewState.hideKeyboard()
+                router.exit()
+            }, { Timber.e(it) })
             .addDisposable()
     }
 }

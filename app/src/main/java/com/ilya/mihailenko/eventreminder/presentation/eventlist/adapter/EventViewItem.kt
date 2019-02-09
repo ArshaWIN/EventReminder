@@ -5,11 +5,12 @@ import com.ilya.mihailenko.eventreminder.databinding.ItemEventBinding
 import com.ilya.mihailenko.eventreminder.entity.Event
 import com.ilya.mihailenko.eventreminder.ui.adapter.DataBindingViewHolder
 import com.ilya.mihailenko.eventreminder.ui.adapter.ViewItem
+import com.ilya.mihailenko.eventreminder.ui.adapter.diffutil.ContentComparable
 
 
 class EventViewItem(
     val event: Event
-) : ViewItem<ItemEventBinding>, EventViewModel {
+) : ViewItem<ItemEventBinding>, EventViewModel, ContentComparable<EventViewItem> {
 
     override fun getLayoutId(): Int = R.layout.item_event
 
@@ -17,9 +18,15 @@ class EventViewItem(
         holder.binding.viewModel = this
     }
 
-    override fun getEventTitle(): String  = event.name
+    override fun getEventTitle(): String = event.name
 
     override fun getEventDescription(): String = event.description
 
     override fun getEventDate(): String = "10/12/2028"
+
+    override fun areContentsTheSame(another: EventViewItem): Boolean =
+        event == another.event
+
+    override fun areItemsTheSame(another: EventViewItem): Boolean =
+        event.id == another.event.id
 }
