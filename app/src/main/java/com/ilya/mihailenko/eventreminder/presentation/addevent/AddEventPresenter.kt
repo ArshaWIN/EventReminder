@@ -5,8 +5,11 @@ import com.ilya.mihailenko.eventreminder.entity.Event
 import com.ilya.mihailenko.eventreminder.model.interactor.addevent.AddEventInteractor
 import com.ilya.mihailenko.eventreminder.navigation.ExtendedRouter
 import com.ilya.mihailenko.eventreminder.presentation.mvp.BasePresenter
+import com.ilya.mihailenko.eventreminder.presentation.pickdate.DatePickerOpenParams
+import com.ilya.mihailenko.eventreminder.presentation.pickdate.TimePickerOpenParams
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.joda.time.DateTime
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
@@ -16,6 +19,8 @@ class AddEventPresenter @Inject constructor(
     private val router: ExtendedRouter,
     private val addEventInteractor: AddEventInteractor
 ) : BasePresenter<AddEventView>() {
+
+    private val addEventInfo = AddEventInfo()
 
     fun onBackPressed() {
         router.exit()
@@ -36,8 +41,24 @@ class AddEventPresenter @Inject constructor(
             .subscribe({
                 viewState.hideKeyboard()
                 router.exit()
-            },
-                { Timber.e(it) })
+            }, { Timber.e(it) })
             .addDisposable()
+    }
+
+    fun onDateClick() {
+        val openParams = DatePickerOpenParams(date = addEventInfo.eventDateTime)
+        viewState.showDatePicker(openParams)
+    }
+
+    fun onTimeClick() {
+        val openParams = TimePickerOpenParams(
+            date = addEventInfo.eventDateTime,
+            allowDateInThePast = false
+        )
+        viewState.showTimePicker(openParams)
+    }
+
+    fun onDateTimeChanged(dateTime: DateTime) {
+        addEventInfo.eventDateTime = dateTime
     }
 }

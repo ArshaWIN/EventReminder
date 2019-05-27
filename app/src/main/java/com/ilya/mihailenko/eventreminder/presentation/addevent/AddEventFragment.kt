@@ -9,9 +9,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.ilya.mihailenko.eventreminder.R
 import com.ilya.mihailenko.eventreminder.databinding.FragmentAddEventBinding
 import com.ilya.mihailenko.eventreminder.presentation.mvp.BaseFragment
-import com.ilya.mihailenko.eventreminder.presentation.pickdate.DatePickerDialogFragment
-import com.ilya.mihailenko.eventreminder.presentation.pickdate.DatePickerOpenParams
-import com.ilya.mihailenko.eventreminder.presentation.pickdate.OnDateTimeChangeListener
+import com.ilya.mihailenko.eventreminder.presentation.pickdate.*
+import com.ilya.mihailenko.eventreminder.utils.DialogUtils
 import com.ilya.mihailenko.eventreminder.utils.ext.hideKeyboard
 import org.joda.time.DateTime
 import timber.log.Timber
@@ -45,16 +44,26 @@ class AddEventFragment : BaseFragment<FragmentAddEventBinding>(), AddEventView,
         )
     }
 
+    override fun showTimePicker(openParams: TimePickerOpenParams) {
+        DialogUtils.showSingle(
+            childFragmentManager,
+            TimePickerDialogFragment.newInstance(openParams)
+        )
+    }
+
+    override fun showDatePicker(openParams: DatePickerOpenParams) {
+        DialogUtils.showSingle(
+            childFragmentManager,
+            DatePickerDialogFragment.newInstance(openParams)
+        )
+    }
+
     override fun onDateClick() {
-        val openParams = DatePickerOpenParams(date = DateTime.now())
-        val datePicker = DatePickerDialogFragment.newInstance(openParams)
-        datePicker.show(childFragmentManager, "TAG")
+        presenter.onDateClick()
     }
 
     override fun onTimeClick() {
-        val openParams = DatePickerOpenParams(date = DateTime.now())
-        val datePicker = DatePickerDialogFragment.newInstance(openParams)
-        datePicker.show(childFragmentManager, "TAG")
+        presenter.onTimeClick()
     }
 
     override fun hideKeyboard() {
@@ -66,6 +75,7 @@ class AddEventFragment : BaseFragment<FragmentAddEventBinding>(), AddEventView,
     }
 
     override fun onDateTimeChanged(dateTime: DateTime) {
+        presenter.onDateTimeChanged(dateTime)
         viewModel.setDate(dateTime)
     }
 
