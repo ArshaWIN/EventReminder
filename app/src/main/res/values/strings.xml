@@ -1,2 +1,6 @@
 <resources>
+    <string name="time_pattern" translatable="false">HH:mm</string>
+    <string name="date_pattern" translatable="false">dd.MM.YYYY</string>
+    <string name="date_jt_pattern" translatable="false">E. d MMMM, YYYY</string>
+
 </resources>

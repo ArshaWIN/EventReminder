@@ -26,6 +26,14 @@ open class SubscriberSimple<T> : DisposableSubscriber<T>() {
             return SubscriberSimple()
         }
 
+        fun <T> create(onNext: (T) -> Unit): SubscriberSimple<T> {
+            return object : SubscriberSimple<T>() {
+                override fun onNext(t: T) {
+                    onNext.invoke(t)
+                }
+            }
+        }
+
         fun <T> create(onNext: Consumer<T>): SubscriberSimple<T> {
             return object : SubscriberSimple<T>() {
                 override fun onNext(t: T) {

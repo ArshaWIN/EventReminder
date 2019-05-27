@@ -36,7 +36,8 @@ class AddEventPresenter @Inject constructor(
             .subscribe({
                 viewState.hideKeyboard()
                 router.exit()
-            }, { Timber.e(it) })
+            },
+                { Timber.e(it) })
             .addDisposable()
     }
 }

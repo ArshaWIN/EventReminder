@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ilya.mihailenko.eventreminder.presentation.addevent.AddEventViewModel" />
+
+        <variable
+            name="handler"
+            type="com.ilya.mihailenko.eventreminder.presentation.addevent.AddEventViewModel.Handler" />
+
+    </data>
 
     <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,22 +33,45 @@
             android:hint="Описание"
             app:layout_constraintTop_toBottomOf="@+id/etName" />
 
-        <EditText
-            android:id="@+id/etDate"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="start|center_vertical"
             android:hint="Дата"
+            android:onClick="@{()->handler.onDateClick()}"
+            android:text="@{viewModel.dateText}"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalCenter"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etDescription" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Время"
+            android:onClick="@{()->handler.onTimeClick()}"
+            android:text="@{viewModel.timeText}"
+            app:layout_constraintStart_toStartOf="@+id/guidelineVerticalCenter"
+            app:layout_constraintTop_toTopOf="@+id/tvDate" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineVerticalCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
         <Button
             android:id="@+id/bSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{()->handler.onSaveClick()}"
             android:text="Сохранить"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etDate"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
 
     </android.support.constraint.ConstraintLayout>

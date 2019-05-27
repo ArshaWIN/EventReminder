@@ -1,11 +1,32 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--<item name="buttonBarPositiveButtonStyle">@style/positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/negative</item>
+        <item name="buttonBarNeutralButtonStyle">@style/negative</item>-->
+        <item name="android:backgroundDimAmount">0.9</item>
+    </style>
+
+    <style name="DateTimePickerStyle" parent="AppTheme.Dialog">
+        <item name="android:colorBackground">#CB000000</item>
+        <!--<item name="colorControlNormal">@color/dialogTextColorPrimary</item>
+        <item name="colorControlActivated">@color/fabColor</item>
+        <item name="colorAccent">@color/dialogColorAccent</item>
+        <item name="android:textColorPrimary">@color/dialogTextColorPrimary</item>
+
+        <item name="android:buttonBarPositiveButtonStyle" tools:targetApi="lollipop">
+            @style/positive
+        </item>
+        <item name="android:buttonBarNegativeButtonStyle" tools:targetApi="lollipop">
+            @style/negative
+        </item>-->
     </style>
 
 </resources>

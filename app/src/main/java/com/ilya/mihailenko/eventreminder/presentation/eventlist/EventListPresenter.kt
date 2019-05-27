@@ -28,7 +28,7 @@ class EventListPresenter @Inject constructor(
             .map { it.toMutableList() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(SubscriberSimpleJava.create { viewState.showEvents(it) })
+            .subscribeWith(SubscriberSimple.create { viewState.showEvents(it) })
             .addDisposable()
     }
 

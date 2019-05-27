@@ -43,7 +43,7 @@ class EventListFragment : BaseFragment<FragmentEventListBinding>(), EventListVie
     }
 
     override fun showEvents(events: MutableList<EventViewItem>) {
-        adapter.setMyItems(events)
+        adapter.items = events
     }
 
     override fun onBackPressed() {
