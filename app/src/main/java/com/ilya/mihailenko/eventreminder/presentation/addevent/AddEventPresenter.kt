@@ -11,7 +11,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.joda.time.DateTime
 import timber.log.Timber
-import java.util.*
 import javax.inject.Inject
 
 @InjectViewState
@@ -20,7 +19,7 @@ class AddEventPresenter @Inject constructor(
     private val addEventInteractor: AddEventInteractor
 ) : BasePresenter<AddEventView>() {
 
-    private val addEventInfo = AddEventInfo()
+    private var eventReminderDate = DateTime.now()
 
     fun onBackPressed() {
         router.exit()
@@ -30,11 +29,13 @@ class AddEventPresenter @Inject constructor(
         eventName: String,
         eventDescription: String
     ) {
+
         val event = Event(
             name = eventName,
             description = eventDescription,
-            createdAt = Date(System.currentTimeMillis())
+            reminderDate = eventReminderDate
         )
+
         addEventInteractor.addEvent(event)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -46,19 +47,21 @@ class AddEventPresenter @Inject constructor(
     }
 
     fun onDateClick() {
-        val openParams = DatePickerOpenParams(date = addEventInfo.eventDateTime)
+        val openParams = DatePickerOpenParams(date = eventReminderDate)
         viewState.showDatePicker(openParams)
     }
 
     fun onTimeClick() {
         val openParams = TimePickerOpenParams(
-            date = addEventInfo.eventDateTime,
+            date = eventReminderDate,
             allowDateInThePast = false
         )
         viewState.showTimePicker(openParams)
     }
 
     fun onDateTimeChanged(dateTime: DateTime) {
-        addEventInfo.eventDateTime = dateTime
+        eventReminderDate = dateTime
+            .withSecondOfMinute(0)
+            .withMillisOfSecond(0)
     }
 }

@@ -1,27 +1,21 @@
 package com.ilya.mihailenko.eventreminder.presentation.addevent
 
-import android.content.res.Resources
 import android.databinding.ObservableField
-import com.ilya.mihailenko.eventreminder.R
+import com.ilya.mihailenko.eventreminder.utils.ext.toReadableDate
+import com.ilya.mihailenko.eventreminder.utils.ext.toReadableTime
 import org.joda.time.DateTime
 
 
-class AddEventViewModelImpl(
-    resources: Resources
-) : AddEventViewModel {
-
-    private val datePattern = resources.getString(R.string.date_pattern)
-    private val timePattern = resources.getString(R.string.time_pattern)
-
+class AddEventViewModelImpl : AddEventViewModel {
 
     private var date: ObservableField<String> =
-        ObservableField(DateTime.now().toString(datePattern))
+        ObservableField(DateTime.now().toReadableDate())
     private var time: ObservableField<String> =
-        ObservableField(DateTime.now().toString(timePattern))
+        ObservableField(DateTime.now().toReadableTime())
 
     fun setDate(dateTime: DateTime) {
-        date.set(dateTime.toString(datePattern))
-        time.set(dateTime.toString(timePattern))
+        date.set(dateTime.toReadableDate())
+        time.set(dateTime.toReadableTime())
     }
 
     override fun getTimeText(): ObservableField<String> = time

@@ -5,5 +5,5 @@ import io.reactivex.Completable
 
 
 interface AddEventInteractor {
-    fun addEvent(event: Event): Completable
+    fun addEvent(eventDto: Event): Completable
 }

@@ -1,6 +1,7 @@
 package com.ilya.mihailenko.eventreminder.model.interactor.eventlist
 
 import com.ilya.mihailenko.eventreminder.entity.Event
+import com.ilya.mihailenko.eventreminder.model.data.database.event.EventDto
 import com.ilya.mihailenko.eventreminder.model.repository.event.EventsRepository
 import io.reactivex.Flowable
 

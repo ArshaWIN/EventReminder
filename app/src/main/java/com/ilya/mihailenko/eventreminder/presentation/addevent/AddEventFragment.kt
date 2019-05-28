@@ -27,7 +27,7 @@ class AddEventFragment : BaseFragment<FragmentAddEventBinding>(), AddEventView,
     @ProvidePresenter
     fun providePresenter(): AddEventPresenter = presenter
 
-    private val viewModel by lazy { AddEventViewModelImpl(resources) }
+    private val viewModel by lazy { AddEventViewModelImpl() }
 
     override val layoutRes: Int = R.layout.fragment_add_event
 
