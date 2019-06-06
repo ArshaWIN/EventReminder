@@ -1,6 +1,13 @@
 <resources>
+
+    <!-- Notification channels' names -->
+    <string name="notification_channel_main">Main</string>
+    <string name="notification_channel_birthday">Birthday</string>
+
     <string name="time_pattern" translatable="false">HH:mm</string>
     <string name="date_pattern" translatable="false">dd.MM.YYYY</string>
     <string name="date_jt_pattern" translatable="false">E. d MMMM, YYYY</string>
+
+    <string name="push_notification_title">Reminder</string>
 
 </resources>

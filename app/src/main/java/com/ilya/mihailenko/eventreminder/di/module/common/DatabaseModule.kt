@@ -1,4 +1,4 @@
-package com.ilya.mihailenko.eventreminder.di.module
+package com.ilya.mihailenko.eventreminder.di.module.common
 
 import android.arch.persistence.room.Room
 import com.ilya.mihailenko.eventreminder.ReminderApp

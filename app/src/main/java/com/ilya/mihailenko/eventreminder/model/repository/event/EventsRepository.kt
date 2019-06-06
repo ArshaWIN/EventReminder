@@ -8,5 +8,5 @@ import io.reactivex.Flowable
 
 interface EventsRepository {
     fun observeEvents(): Flowable<List<Event>>
-    fun addEvent(event: Event): Completable
+    fun saveEvent(event: Event): Completable
 }

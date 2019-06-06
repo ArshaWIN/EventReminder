@@ -1,4 +1,4 @@
-package com.ilya.mihailenko.eventreminder.di
+package com.ilya.mihailenko.eventreminder.di.module.common
 
 import com.ilya.mihailenko.eventreminder.di.module.AddEventModule
 import com.ilya.mihailenko.eventreminder.di.module.EventListModule

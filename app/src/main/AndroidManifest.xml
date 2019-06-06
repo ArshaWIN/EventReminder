@@ -3,11 +3,11 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".ReminderApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:name=".ReminderApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.ilya.mihailenko.eventreminder.presentation.main.MainActivity">
@@ -17,6 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".common.alarm.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false">
+        </receiver>
+
     </application>
 
 </manifest>

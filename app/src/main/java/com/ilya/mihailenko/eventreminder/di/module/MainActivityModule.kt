@@ -1,4 +1,4 @@
-package com.ilya.mihailenko.eventreminder.di
+package com.ilya.mihailenko.eventreminder.di.module
 
 import com.ilya.mihailenko.eventreminder.R
 import com.ilya.mihailenko.eventreminder.di.scopes.PerActivity
@@ -27,5 +27,4 @@ class MainActivityModule {
     ): EventsRepository {
         return EventsRepositoryImpl(eventDao, eventDtoMapper)
     }
-
 }

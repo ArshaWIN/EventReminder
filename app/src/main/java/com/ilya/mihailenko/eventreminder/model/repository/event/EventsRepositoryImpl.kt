@@ -14,7 +14,7 @@ class EventsRepositoryImpl(
     private val eventDtoMapper: EventDtoMapper
 ) : EventsRepository {
 
-    override fun addEvent(event: Event): Completable =
+    override fun saveEvent(event: Event): Completable =
         Completable.fromAction { eventDao.insert(eventDtoMapper.mapperFrom().map(event)) }
 
 

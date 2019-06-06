@@ -8,7 +8,6 @@ import com.ilya.mihailenko.eventreminder.ui.adapter.ViewItem
 import com.ilya.mihailenko.eventreminder.ui.adapter.diffutil.ContentComparable
 import com.ilya.mihailenko.eventreminder.utils.ext.toReadableDateTime
 
-
 class EventViewItem(
     private val event: Event
 ) : ViewItem<ItemEventBinding>, EventViewModel, ContentComparable<EventViewItem> {
