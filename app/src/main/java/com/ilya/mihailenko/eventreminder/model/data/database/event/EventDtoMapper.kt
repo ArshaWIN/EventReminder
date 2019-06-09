@@ -1,5 +1,6 @@
 package com.ilya.mihailenko.eventreminder.model.data.database.event
 
+import com.ilya.mihailenko.eventreminder.common.alarm.AlarmType
 import com.ilya.mihailenko.eventreminder.entity.Event
 import com.ilya.mihailenko.eventreminder.utils.ext.toDateTime
 import com.ilya.mihailenko.eventreminder.utils.ext.toTimestamp
@@ -18,7 +19,9 @@ class EventDtoMapper @Inject constructor() : BaseTwoWayMapper<EventDto, Event>()
                 name = name,
                 description = description,
                 reminderDate = reminderDate.toDateTime(),
-                createdAt = createdAt.toDateTime()
+                createdAt = createdAt.toDateTime(),
+                isRepeated = isRepeated,
+                alarmType = AlarmType.valueOf(alarmType)
             )
         }
     }
@@ -29,7 +32,9 @@ class EventDtoMapper @Inject constructor() : BaseTwoWayMapper<EventDto, Event>()
                 name = name,
                 description = description,
                 reminderDate = reminderDate.toTimestamp(),
-                createdAt = createdAt.toTimestamp()
+                createdAt = createdAt.toTimestamp(),
+                isRepeated = isRepeated,
+                alarmType = alarmType.name
             )
         }
     }

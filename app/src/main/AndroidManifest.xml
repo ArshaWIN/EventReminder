@@ -2,6 +2,8 @@
 <manifest package="com.ilya.mihailenko.eventreminder"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:name=".ReminderApp"
         android:allowBackup="true"
@@ -22,6 +24,29 @@
             android:name=".common.alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="false">
+        </receiver>
+
+        <receiver
+            android:name=".common.reboot.TimeChangedReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".common.reboot.SystemRebootReceiver"
+            android:directBootAware="true"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+
+            <intent-filter>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
         </receiver>
 
     </application>

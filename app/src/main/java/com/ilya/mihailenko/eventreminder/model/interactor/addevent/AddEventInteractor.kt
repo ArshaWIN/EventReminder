@@ -1,10 +1,9 @@
 package com.ilya.mihailenko.eventreminder.model.interactor.addevent
 
-import com.ilya.mihailenko.eventreminder.common.alarm.AlarmParams
 import com.ilya.mihailenko.eventreminder.entity.Event
 import io.reactivex.Completable
 
 
 interface AddEventInteractor {
-    fun addEvent(alarmParams: AlarmParams): Completable
+    fun addEvent(event: Event): Completable
 }

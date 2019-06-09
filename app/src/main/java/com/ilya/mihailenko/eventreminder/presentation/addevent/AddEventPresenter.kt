@@ -1,9 +1,6 @@
 package com.ilya.mihailenko.eventreminder.presentation.addevent
 
-import android.app.Activity
-import android.content.Intent
 import com.arellomobile.mvp.InjectViewState
-import com.ilya.mihailenko.eventreminder.common.alarm.AlarmParams
 import com.ilya.mihailenko.eventreminder.common.alarm.AlarmType
 import com.ilya.mihailenko.eventreminder.entity.Event
 import com.ilya.mihailenko.eventreminder.model.interactor.addevent.AddEventInteractor
@@ -37,12 +34,12 @@ class AddEventPresenter @Inject constructor(
         val event = Event(
             name = eventName,
             description = eventDescription,
-            reminderDate = eventReminderDate
+            reminderDate = eventReminderDate,
+            isRepeated = false,
+            alarmType = AlarmType.NOTIFICATION
         )
 
-        val alarmParams = AlarmParams(event, false, AlarmType.NOTIFICATION)
-
-        addEventInteractor.addEvent(alarmParams)
+        addEventInteractor.addEvent(event)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

@@ -1,15 +1,18 @@
 package com.ilya.mihailenko.eventreminder.common.alarm
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import com.ilya.mihailenko.eventreminder.common.notification.NotificationParams
 import com.ilya.mihailenko.eventreminder.common.notification.NotificationType
 import com.ilya.mihailenko.eventreminder.di.AppContext
 import com.ilya.mihailenko.eventreminder.entity.Event
 import com.ilya.mihailenko.eventreminder.utils.ext.putExtraData
+import org.joda.time.DateTime
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -20,19 +23,18 @@ class ReminderAlarmManager @Inject constructor(
     private val alarmManager: AlarmManager
 ) {
 
-    fun createAlarm(alarmParams: AlarmParams) {
-        val alarmType = alarmParams.alarmType
+    fun createAlarm(event: Event) {
+        val alarmType = event.alarmType
 
         when (alarmType) {
-            AlarmType.NOTIFICATION -> createNotificationAlarm(alarmParams)
+            AlarmType.NOTIFICATION -> createNotificationAlarm(event)
             AlarmType.WAKELOCK -> {
             }
         }
     }
 
-    private fun createNotificationAlarm(alarmParams: AlarmParams) {
-        val eventInfo = alarmParams.eventInfo
-        val intent = createAlarmIntent(eventInfo)
+    private fun createNotificationAlarm(event: Event) {
+        val intent = createAlarmIntent(event)
 
         val pendingIntent = PendingIntent.getBroadcast(
             context,
@@ -41,11 +43,25 @@ class ReminderAlarmManager @Inject constructor(
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        alarmManager.set(
-            AlarmManager.RTC_WAKEUP,
-            eventInfo.reminderDate.millis,
-            pendingIntent
-        )
+        setAlarm(event.reminderDate, pendingIntent)
+    }
+
+    @SuppressLint("NewApi")
+    private fun setAlarm(dateTime: DateTime, pendingIntent: PendingIntent) {
+        val sdkVersion = Build.VERSION.SDK_INT
+        when {
+            sdkVersion >= Build.VERSION_CODES.M -> alarmManager.setAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                dateTime.millis,
+                pendingIntent
+            )
+            sdkVersion >= Build.VERSION_CODES.KITKAT -> alarmManager.setExact(
+                AlarmManager.RTC_WAKEUP,
+                dateTime.millis,
+                pendingIntent
+            )
+            else -> alarmManager.set(AlarmManager.RTC_WAKEUP, dateTime.millis, pendingIntent)
+        }
     }
 
     private fun createAlarmIntent(eventInfo: Event): Intent {

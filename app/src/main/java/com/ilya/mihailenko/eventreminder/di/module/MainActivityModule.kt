@@ -19,12 +19,4 @@ class MainActivityModule {
     fun provideMainActivityNavigator(mainActivity: MainActivity): MainActivityNavigator =
         MainActivityNavigator(mainActivity, R.id.fragmentContainer)
 
-    @Provides
-    @PerActivity
-    fun provideEventRepository(
-        eventDao: EventDao,
-        eventDtoMapper: EventDtoMapper
-    ): EventsRepository {
-        return EventsRepositoryImpl(eventDao, eventDtoMapper)
-    }
 }
